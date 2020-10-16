@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <title>Animamundi-test</title>
+
+  <!-- Bootstrap core CSS -->
+  <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="static/style.css" rel="stylesheet">
+
+</head>
+
+<body>
+
+  <!-- Navigation -->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark static-top">
+    <div class="container">
+      <a class="navbar-brand" href="#">Detect Bottles</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarResponsive">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item active">
+            <a class="nav-link" href="#">Home
+              <span class="sr-only">(current)</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">About</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Services</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Contact</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Page Content 
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-12 text-center">
+        <h1 class="mt-5">A Bootstrap 4 Starter Template</h1>
+        <p class="lead">Complete with pre-defined file paths and responsive navigation!</p>
+        <ul class="list-unstyled">
+          <li>Bootstrap 4.5.0</li>
+          <li>jQuery 3.5.1</li>
+        </ul>
+      </div>
+    </div>
+  </div>-->
+
+
+  <div class="container py-5">
+
+    <!-- For demo purpose -->
+    <header class="text-white text-center">
+        <h1 class="display-4">Test our detection algorithm</h1>
+        <p class="lead mb-0">Our model is still in development but you can give it a quick try</p>
+        <img src="https://res.cloudinary.com/mhmd/image/upload/v1564991372/image_pxlho1.svg" alt="" width="150" class="mb-4">
+    </header>
+
+
+    <div class="row py-4">
+        <div class="col-lg-6 mx-auto">
+
+            <!-- Upload image input-->
+            <div class="input-group mb-3 px-2 py-2 rounded-pill bg-white shadow-sm">
+                <input id="upload" type="file" onchange="readURL(this);" accept="image/*" class="form-control border-0">
+                <label id="upload-label" for="upload" class="font-weight-light text-muted">Choose image</label>
+                <div class="input-group-append">
+                    <label for="upload" class="btn btn-light m-0 rounded-pill px-4"> <i class="fa fa-cloud-upload mr-2 text-muted"></i><small class="text-uppercase font-weight-bold text-muted">Choose file</small></label>
+                </div>
+                <button id="submit_image" onclick="addPhoto()">Submit</button>
+            </div>
+            <div class="card-footer small text-muted text-center d-none d-md-block">
+              <a href="#" class="text-muted select-photo-url-btn" style="text-decoration: underline;">Paste URL</a> 
+            </div>
+
+            <!-- Uploaded image area-->
+            <p class="font-italic text-white text-center">The image will be rendered inside the box below.</p>
+            <div class="image-area mt-4"><img id="imageResult" src="#" alt="" class="img-fluid rounded shadow-sm mx-auto d-block"></div>
+
+        </div>
+    </div>
+</div>  
+
+  <!-- Bootstrap core JavaScript 
+  <script src="vendor/jquery/jquery.slim.min.js"></script>-->
+  <script src="https://sdk.amazonaws.com/js/aws-sdk-2.771.0.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="static/script.js"></script>
+
+</body>
+
+</html>
