@@ -79,7 +79,7 @@ function addPhoto() {
         clearFileInput(document.getElementById("upload"));
         document.getElementById("upload-label").innerHTML = 'Choose image';
 
-        var downloadphotoKey = encodeURIComponent(downloadfoldername) + "/" + filename;
+        var downloadphotoKey = encodeURIComponent(downloadfoldername) + "/" + fileName;
         var detection_promise = getdetection(downloadphotoKey);
         detection_promise.then(
           function(data){
