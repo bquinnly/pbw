@@ -80,7 +80,8 @@ function addPhoto() {
         document.getElementById("upload-label").innerHTML = 'Choose image';
 
         var downloadphotoKey = encodeURIComponent(downloadfoldername) + "/" + fileName;
-        var detection_promise = getdetection(downloadphotoKey);
+        
+        var detection_promise = getdetection(downloadphotoKey).promise();
         detection_promise.then(
           function(data){
             detectionurl = 'https://'+detectionbucket+'.s3.'+ bucketRegion+'.amazonaws.com/'+downloadphotoKey;
@@ -88,7 +89,9 @@ function addPhoto() {
             console.log(data)
           },
           function(down_err){
-            console.log(down_err)
+            console.log(down_err);
+            setTimeout(() => { $('#imagedetectionResult').attr('src', detectionurl)}, 2000);
+            ;
           }
         );
 
@@ -104,7 +107,7 @@ function addPhoto() {
     //get ready for download
     const downloads3 = new AWS.S3({apiVersion: "2006-03-01"});
     var downloadparams = {Bucket: detectionbucket, Key: downloadphotoKey};
-    return await downloads3.getObject(downloadparams).promise();
+    return await downloads3.getObject(downloadparams);
         
   }
 
