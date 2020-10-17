@@ -85,7 +85,7 @@ function addPhoto() {
         files = []
         clearFileInput(document.getElementById("upload"));
         document.getElementById("upload-label").innerHTML = 'Choose image';
-        upload_response = await download.getObject(downloadparams).promise();
+        const upload_response = await download.getObject(downloadparams).promise();
         upload_response.then(
           function(data){
             console.log(data)
