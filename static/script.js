@@ -74,7 +74,7 @@ function addPhoto() {
         alert("Successfully uploaded photo.");
         
 
-        s3url = 'https://'+bucketName+'.s3.'+ bucketRegion+'.amazonaws.com/'+photoKey;
+        s3url = 'https://'+bucketName+'.s3.'+ bucketRegion+'.amazonaws.com/'+uploadphotoKey;
         //console.log(s3url);
         files = [];
         clearFileInput(document.getElementById("upload"));
@@ -104,7 +104,7 @@ function addPhoto() {
     
     //get ready for download
     const downloads3 = new AWS.S3({apiVersion: "2006-03-01"});
-    var downloadparams = { Bucket: detectionbucket, Key: downloadphotoKey};
+    var downloadparams = {Bucket: detectionbucket, Key: downloadphotoKey};
     return await downloads3.getObject(downloadparams).promise();
         
   }
