@@ -76,7 +76,7 @@ function addPhoto() {
       function(data) {
         alert("Successfully uploaded photo.");
         //get ready for download
-        var download = new AWS.S3({
+        const download = new AWS.S3({
           apiVersion: "2006-03-01"
         });
 
