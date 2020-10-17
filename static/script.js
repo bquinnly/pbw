@@ -72,17 +72,19 @@ function addPhoto() {
     promise.then(
       function(data) {
         alert("Successfully uploaded photo.");
-        
-
         s3url = 'https://'+bucketName+'.s3.'+ bucketRegion+'.amazonaws.com/'+uploadphotoKey;
         //console.log(s3url);
+        
         files = [];
         clearFileInput(document.getElementById("upload"));
         document.getElementById("upload-label").innerHTML = 'Choose image';
 
-        var detection_promise = getdetection(fileName);
+        var downloadphotoKey = encodeURIComponent(downloadfoldername) + "/" + filename;
+        var detection_promise = getdetection(downloadphotoKey);
         detection_promise.then(
           function(data){
+            detectionurl = 'https://'+detectionbucket+'.s3.'+ bucketRegion+'.amazonaws.com/'+downloadphotoKey;
+            $('#imagedetectionResult').attr('src', detectionurl);
             console.log(data)
           },
           function(down_err){
@@ -98,10 +100,7 @@ function addPhoto() {
     );
   }
 
-  async function getdetection(filename){
-
-    var downloadphotoKey = encodeURIComponent(downloadfoldername) + "/" + filename;
-    
+  async function getdetection(downloadphotoKey){
     //get ready for download
     const downloads3 = new AWS.S3({apiVersion: "2006-03-01"});
     var downloadparams = {Bucket: detectionbucket, Key: downloadphotoKey};
