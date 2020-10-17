@@ -68,18 +68,18 @@ function addPhoto() {
         ACL: "public-read"
       }
     });
-
-    //get ready for download
-    var download = new AWS.S3({
-      apiVersion: "2006-03-01"
-    });
+    
     var downloadparams = { Bucket: detectionbucket, Key: downloadphotoKey};
   
     var promise = upload.promise();
     promise.then(
       function(data) {
         alert("Successfully uploaded photo.");
-        
+        //get ready for download
+        var download = new AWS.S3({
+          apiVersion: "2006-03-01"
+        });
+
         s3url = 'https://'+bucketName+'.s3.'+ bucketRegion+'.amazonaws.com/'+photoKey;
         //console.log(s3url);
         files = []
