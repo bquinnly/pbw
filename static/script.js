@@ -84,10 +84,11 @@ function addPhoto() {
         files = []
         clearFileInput(document.getElementById("upload"));
         console.log(s3url);
-        document.getElementById("upload-label").innerHTML = 'Choose image'
-        $.ajax({
+        document.getElementById("upload-label").innerHTML = 'Choose image';
+        //const { ContentType } = await s3.getObject(params).promise();
+        /*$.ajax({
           method: 'POST',
-          url: 'http://18.133.189.143:8000/detect',
+          url: 'https://18.133.189.143:5000/detect',
           data: {"url" : s3url},
           contentType: false,
           processData: false,
@@ -97,7 +98,7 @@ function addPhoto() {
           //$('#result').text(data);
       }).fail(function(data){
           alert('error!');
-      });
+      }); */
 
       },
       function(err) {
