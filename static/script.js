@@ -56,7 +56,6 @@ function addPhoto() {
     var file = files[0];
     var fileName = Date.now().toString()+ '_' + file.name;
     var uploadphotoKey = encodeURIComponent(uploadfoldername) + "/" + fileName;
-    var downloadphotoKey = encodeURIComponent(downloadfoldername) + "/" + fileName;
     
   
     // Use S3 ManagedUpload class as it supports multipart uploads
@@ -68,25 +67,21 @@ function addPhoto() {
         ACL: "public-read"
       }
     });
-    
-    var downloadparams = { Bucket: detectionbucket, Key: downloadphotoKey};
   
     var promise = upload.promise();
     promise.then(
       function(data) {
         alert("Successfully uploaded photo.");
-        //get ready for download
-        const download = new AWS.S3({
-          apiVersion: "2006-03-01"
-        });
+        
 
         s3url = 'https://'+bucketName+'.s3.'+ bucketRegion+'.amazonaws.com/'+photoKey;
         //console.log(s3url);
-        files = []
+        files = [];
         clearFileInput(document.getElementById("upload"));
         document.getElementById("upload-label").innerHTML = 'Choose image';
-        const upload_response = await download.getObject(downloadparams).promise();
-        upload_response.then(
+
+        var detection_promise = getdetection(fileName);
+        detection_promise.then(
           function(data){
             console.log(data)
           },
@@ -101,6 +96,17 @@ function addPhoto() {
         return alert("There was an error uploading your photo: ", err.message);
       }
     );
+  }
+
+  async function getdetection(filename){
+
+    var downloadphotoKey = encodeURIComponent(downloadfoldername) + "/" + filename;
+    
+    //get ready for download
+    const downloads3 = new AWS.S3({apiVersion: "2006-03-01"});
+    var downloadparams = { Bucket: detectionbucket, Key: downloadphotoKey};
+    return await downloads3.getObject(downloadparams).promise();
+        
   }
 
 
